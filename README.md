@@ -3,6 +3,8 @@
 A small static website (plain HTML + CSS, no build step) where visitors from Instagram can download the
 **7 Types of Perspective** cheat sheet as a PDF.
 
+Live site: https://ardacubuk22-blip.github.io/PRESPECT-VE_7STEP/
+
 ```
 index.html            the landing page
 assets/style.css      styles
