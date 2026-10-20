@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Perspective Beginner Drills – @perspective.sketch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --bg:#fcfbf7; --ink:#1a1a1a; --muted:#5b5b5b; --line:#e4e1d8; --blue:#1e6fd9; --orange:#c2410c; --orange-bg:#fdf0e8; --blue-bg:#e8f0fb; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body { font: 400 10.5pt/1.5 Inter, sans-serif; color:var(--ink); }
+  h1,h2,h3 { font-family: Outfit, Inter, sans-serif; margin:0; line-height:1.1; }
+
+  .page { width:210mm; height:297mm; padding:14mm 16mm 12mm; background:var(--bg); position:relative; overflow:hidden; page-break-after:always; break-after:page; display:flex; flex-direction:column; }
+  .page:last-child { page-break-after:auto; break-after:auto; }
+
+  .top { display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); font-weight:500; padding-bottom:3mm; border-bottom:1px solid var(--line); }
+  .top b { color:var(--ink); }
+  .foot { margin-top:auto; padding-top:3mm; display:flex; justify-content:space-between; font-size:8.5pt; color:#8a8a8a; font-weight:500; }
+
+  .badge { display:inline-block; background:var(--blue); color:#fff; font:700 8pt Inter; letter-spacing:.05em; text-transform:uppercase; padding:2.2mm 5mm; border-radius:99px; }
+
+  /* cover */
+  .cover-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:12mm; }
+  .cover-top .handle { font:700 12pt Outfit; }
+  .title { display:flex; align-items:flex-end; gap:4mm; }
+  .title .num { font:400 64pt/0.9 'Permanent Marker', cursive; color:var(--blue); transform:rotate(-4deg); }
+  .title h1 { font-size:46pt; font-weight:800; letter-spacing:-.02em; }
+  .underline { height:2.6mm; width:112mm; margin:3mm 0 6mm; }
+  .lead { font-size:12.5pt; color:var(--muted); max-width:150mm; margin:0 0 9mm; }
+  .art { background:#fff; border:1px solid var(--line); border-radius:5mm; padding:4mm; margin-bottom:8mm; }
+  .art svg { display:block; width:100%; height:auto; }
+  .chips { display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; }
+  .chip { background:#fff; border:1px solid var(--line); border-radius:4mm; padding:3.5mm 4mm; }
+  .chip small { display:block; color:var(--blue); font-weight:700; font-size:8pt; letter-spacing:.04em; text-transform:uppercase; }
+  .chip b { font:700 11pt Outfit; display:block; margin:.5mm 0; }
+  .chip span { color:var(--muted); font-size:8.5pt; }
+
+  /* generic */
+  h2.sec { font-size:25pt; font-weight:800; letter-spacing:-.01em; margin:7mm 0 1mm; }
+  .sub { color:var(--muted); font-weight:600; font-size:10.5pt; margin-bottom:5mm; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .cols h3 { font-size:12pt; margin:0 0 2.5mm; display:flex; align-items:center; gap:2.2mm; }
+  .cols h3::before { content:""; width:1.4mm; height:4.6mm; background:var(--blue); border-radius:1mm; display:inline-block; }
+  ul.plain { margin:0; padding-left:4.6mm; }
+  ul.plain li { margin:0 0 1.6mm; }
+  ol.steps { list-style:none; margin:0; padding:0; counter-reset:s; }
+  ol.steps li { counter-increment:s; display:flex; gap:3mm; margin:0 0 2.4mm; }
+  ol.steps li::before { content:counter(s); flex:none; width:5.6mm; height:5.6mm; border-radius:50%; border:1.2px solid var(--blue); color:var(--blue); font:700 8pt/4.5mm Inter; text-align:center; margin-top:.3mm; }
+
+  .callouts { display:grid; grid-template-columns:1fr 1fr; gap:4mm; margin-top:4mm; }
+  .box { border-radius:3mm; padding:3.4mm 4mm; border-left:1.4mm solid; }
+  .box b { display:block; font:700 9.5pt Outfit; margin-bottom:1mm; }
+  .box.warn { background:var(--orange-bg); border-color:var(--orange); } .box.warn b { color:var(--orange); }
+  .box.tip { background:var(--blue-bg); border-color:var(--blue); } .box.tip b { color:var(--blue); }
+  .box p { margin:0; font-size:9.5pt; }
+
+  /* drill header */
+  .drill-head { display:flex; align-items:center; gap:5mm; margin:6mm 0 4mm; }
+  .drill-no { width:15mm; height:15mm; border-radius:50%; background:var(--blue); color:#fff; font:800 20pt/15mm Outfit; text-align:center; flex:none; }
+  .drill-head h2 { font-size:25pt; font-weight:800; }
+  .drill-head p { margin:1mm 0 0; color:var(--muted); font-weight:600; font-size:10pt; }
+  .pill { margin-left:auto; border:1.3px solid var(--blue); color:var(--blue); font:700 8.5pt Inter; padding:1.8mm 4mm; border-radius:99px; white-space:nowrap; }
+
+  .sheet-label { font:700 9pt Inter; letter-spacing:.05em; text-transform:uppercase; color:var(--blue); margin:5mm 0 2mm; display:flex; justify-content:space-between; }
+  .sheet-label span { color:#8a8a8a; text-transform:none; letter-spacing:0; font-weight:500; }
+  .sheet { border:1.2px solid #cfd6e4; border-radius:3mm; background:#fff; overflow:hidden; }
+  .sheet svg { display:block; width:100%; height:auto; }
+
+  .check { display:flex; align-items:center; gap:3.5mm; padding:2.6mm 0; border-bottom:1px solid var(--line); }
+  .check i { width:6mm; height:6mm; border:1.4px solid #b8b8b8; border-radius:1.4mm; flex:none; }
+  .check b { font:700 11pt Outfit; }
+  .check span { margin-left:auto; width:24mm; color:#8a8a8a; font-size:9pt; }
+  .dateline { width:34mm; border-bottom:1px solid #bbb; height:5mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page">
+  <div class="cover-top"><span class="handle">@perspective.sketch</span><span class="badge">Free workbook</span></div>
+  <div class="title"><span class="num">6</span><h1>Beginner Drills</h1></div>
+  <svg class="underline" viewBox="0 0 400 12" preserveAspectRatio="none"><path d="M2 7 C 90 2, 200 11, 398 4" fill="none" stroke="#1e6fd9" stroke-width="5" stroke-linecap="round"/></svg>
+  <p class="lead">Six short, printable exercises that build your perspective skills one step at a time. 10 to 20 minutes each, with a ready-made practice sheet for every drill.</p>
+
+  <div class="art"><div id="coverArt"></div></div>
+
+  <div class="chips">
+    <div class="chip"><small>Drill 1 · 15 min</small><b>9 Boxes</b><span>1-point perspective</span></div>
+    <div class="chip"><small>Drill 2 · 20 min</small><b>The Hallway</b><span>1-point perspective</span></div>
+    <div class="chip"><small>Drill 3 · 20 min</small><b>10 Boxes</b><span>2-point perspective</span></div>
+    <div class="chip"><small>Drill 4 · 20 min</small><b>The Tower</b><span>3-point perspective</span></div>
+    <div class="chip"><small>Drill 5 · 20 min</small><b>Misty Mountains</b><span>Aerial perspective</span></div>
+    <div class="chip"><small>Drill 6 · 10 min</small><b>Eye Level</b><span>The golden rule</span></div>
+  </div>
+  <div class="foot"><span>Print it, pin it, draw it.</span><span>perspective.sketch</span></div>
+</section>
+
+<!-- ============ 2. BEFORE YOU START ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <h2 class="sec">Before You Start</h2>
+  <div class="sub">How to get the most out of these drills</div>
+  <div class="cols">
+    <div>
+      <h3>What you need</h3>
+      <ul class="plain">
+        <li>A pencil (HB or 2B) and an eraser</li>
+        <li>A ruler or any straight edge</li>
+        <li>Plain paper, or print the practice sheets in this workbook</li>
+        <li>Optional: a colored pencil to mark vanishing points</li>
+        <li>A timer on your phone</li>
+      </ul>
+    </div>
+    <div>
+      <h3>4 rules for every drill</h3>
+      <ul class="plain">
+        <li><b>Light first, dark last.</b> Sketch guide lines lightly, then darken the final lines.</li>
+        <li><b>Keep your guides.</b> They show your thinking. Don't erase them.</li>
+        <li><b>Use the timer.</b> Stop when it rings, even if it isn't perfect.</li>
+        <li><b>Repeat it 3 times</b> on different days. That's how it sticks.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec" style="margin-top:9mm;font-size:19pt">Ask these 3 questions before every drawing</h2>
+  <ol class="steps" style="margin-top:3mm">
+    <li><div><b>Where are my eyes?</b> Draw the horizon line first. It is your eye level.</div></li>
+    <li><div><b>How many sets of parallel depth lines do I have?</b> That number is how many vanishing points you need.</div></li>
+    <li><div><b>Are my vanishing points far enough apart?</b> More distance gives a more natural image.</div></li>
+  </ol>
+
+  <div class="callouts" style="margin-top:7mm">
+    <div class="box tip"><b>The golden rule</b><p>If you draw while standing, the eyes of every person of similar height standing on the same ground, near or far, sit right on the horizon line. Only the size of their bodies changes.</p></div>
+    <div class="box tip"><b>Suggested plan</b><p>One drill a day for six days, then repeat the ones that felt hardest. Pairs well with the free <i>7 Types of Perspective</i> cheat sheet.</p></div>
+  </div>
+
+  <h2 class="sec" style="margin-top:9mm;font-size:19pt">How each page works</h2>
+  <p style="margin:2mm 0 0">Every drill has a goal, simple steps, a way to check yourself, and a practice sheet with the horizon line and vanishing points already drawn. Print the sheet, or copy it onto your own paper.</p>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 2 of 9</span></div>
+</section>
+
+<!-- ============ 3. DRILL 1 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">1</div><div><h2>9 Boxes</h2><p>1-point perspective · The straight-on view</p></div><span class="pill">15 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">Learn which faces of a box you can see above, on and below the horizon.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>Use the horizon line and vanishing point (VP) on the sheet.</li>
+        <li>Draw 9 front faces: three above the horizon, three on it, three below.</li>
+        <li>Connect the corners of each face to the VP with light lines.</li>
+        <li>Close each box with one horizontal and one vertical line.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>Boxes <b>above</b> the horizon show their bottom.</li>
+        <li>Boxes <b>below</b> it show their top.</li>
+        <li>Boxes <b>on</b> it show neither top nor bottom.</li>
+        <li>Horizontals stay horizontal. Verticals stay vertical.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box warn"><b>Common mistake</b><p>Too much depth. A box pulled too far toward the VP looks stretched and unreal.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>Print it or copy it by hand</span></div>
+  <div class="sheet"><div id="sheet1"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 3 of 9</span></div>
+</section>
+
+<!-- ============ 4. DRILL 2 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">2</div><div><h2>The Hallway</h2><p>1-point perspective · Rooms and streets seen head-on</p></div><span class="pill">20 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">Turn the one-point box into a space you can walk into.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>The back wall and the four corner lines are already drawn on the sheet.</li>
+        <li>Add a door and two windows. Draw their near edges as verticals, then run their tops and bottoms to the VP.</li>
+        <li>Add floor lines across the hallway. Space them closer together as they go back.</li>
+        <li>Shade the far end lightest and the near end darkest.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>Every line that goes into the distance points at the VP.</li>
+        <li>Door and window tops line up with the same VP line.</li>
+        <li>Floor lines are perfectly horizontal.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box tip"><b>Pro tip</b><p>Don't put the VP dead center. Shifting it a little makes the composition feel more natural and interesting.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>Add the door, windows and floor</span></div>
+  <div class="sheet"><div id="sheet2"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 4 of 9</span></div>
+</section>
+
+<!-- ============ 5. DRILL 3 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">3</div><div><h2>10 Boxes</h2><p>2-point perspective · The corner view</p></div><span class="pill">20 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">See how a corner turns into two sets of depth lines, one for each VP.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>Use the horizon with its two far-apart vanishing points.</li>
+        <li>Draw the nearest vertical edge of a box.</li>
+        <li>Connect its top and bottom to both VPs.</li>
+        <li>Add two more vertical edges to set the width, then connect the new corners back to the VPs.</li>
+        <li>Repeat until you have 10 boxes: some above, some on and some below the horizon.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>Only the vertical lines stay vertical.</li>
+        <li>Boxes above the horizon show their bottom, boxes below show their top.</li>
+        <li>Your corners look natural, not sharp.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box warn"><b>Common mistake</b><p>Vanishing points too close together. You get sharp, distorted corners.</p></div>
+        <div class="box tip"><b>Pro tip</b><p>If your VPs don't fit on the paper, tape the paper to your desk and mark the points on the desk itself.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>VP1 in blue · VP2 in orange</span></div>
+  <div class="sheet"><div id="sheet3"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 5 of 9</span></div>
+</section>
+
+<!-- ============ 6. DRILL 4 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">4</div><div><h2>The Tower</h2><p>3-point perspective · The dramatic view</p></div><span class="pill">20 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">Find out how far away the third vanishing point should be.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>On each frame the horizon is near the top, for a bird's-eye view, with two VPs on it.</li>
+        <li>VP3 sits below: close in A, farther in B, farthest in C (off the page).</li>
+        <li>In each frame, draw the nearest corner of a cube and connect it to all three points.</li>
+        <li>Draw the vertical edges leaning toward VP3 instead of straight up and down.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>Which cube looks the most natural? Circle it.</li>
+        <li>Notice how the leaning verticals get closer to parallel as VP3 moves away.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box warn"><b>Common mistake</b><p>Third point too close. The building turns into a sharp cone.</p></div>
+        <div class="box tip"><b>Pro tip</b><p>For a bird's-eye view, push the horizon to the top of the page. For a worm's-eye view, to the bottom.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>Draw one cube in each frame</span></div>
+  <div class="sheet"><div id="sheet4"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 6 of 9</span></div>
+</section>
+
+<!-- ============ 7. DRILL 5 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">5</div><div><h2>Misty Mountains</h2><p>Aerial perspective · Depth without lines</p></div><span class="pill">20 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">Create depth with value alone, using one pencil.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>With one pencil, shade the four boxes from light (1) to dark (4).</li>
+        <li>In the frame, the four ridge lines are drawn faintly. Fill layer 1 (the farthest) with your lightest value and almost no detail.</li>
+        <li>Move forward layer by layer, increasing value and contrast.</li>
+        <li>Save the darkest values and the sharpest details for layer 4, the foreground.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>Each layer is clearly different from its neighbors.</li>
+        <li>The farthest layer is light, soft and cool.</li>
+        <li>The nearest layer is dark, sharp and detailed.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box warn"><b>Common mistake</b><p>Too much detail in the background. Drawing every tree in the distance kills the depth.</p></div>
+        <div class="box tip"><b>Pro tip</b><p>Squint your eyes. Value differences become much easier to see.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>1 = lightest · 4 = darkest</span></div>
+  <div class="sheet"><div id="sheet5"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 7 of 9</span></div>
+</section>
+
+<!-- ============ 8. DRILL 6 ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <div class="drill-head"><div class="drill-no">6</div><div><h2>Eye Level</h2><p>The golden rule · Put every person's eyes on the horizon</p></div><span class="pill">10 min</span></div>
+  <div class="cols">
+    <div><h3>Goal</h3><p style="margin:0 0 4mm">Train your eye to keep the horizon line at eye level, whatever the distance.</p>
+      <h3>Steps</h3>
+      <ol class="steps">
+        <li>The horizon and ground are drawn. The first person is an example.</li>
+        <li>Draw a standing person on each blue dot. Start at the feet.</li>
+        <li><div>Make each person's <b>eyes sit exactly on the horizon line</b>.</div></li>
+        <li>Notice that only the size of the body changes with distance. Eye level never does.</li>
+      </ol></div>
+    <div><h3>Check yourself</h3>
+      <ul class="plain">
+        <li>All five pairs of eyes sit on the same line.</li>
+        <li>The farther the person, the smaller the body.</li>
+      </ul>
+      <div class="callouts" style="grid-template-columns:1fr;margin-top:3mm">
+        <div class="box warn"><b>Common mistake</b><p>Shrinking far people from the top, so their heads drop below the horizon. Shrink them from the feet up instead.</p></div>
+      </div></div>
+  </div>
+  <div class="sheet-label">Practice sheet<span>Draw a person on each dot</span></div>
+  <div class="sheet"><div id="sheet6"></div></div>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 8 of 9</span></div>
+</section>
+
+<!-- ============ 9. PROGRESS ============ -->
+<section class="page">
+  <div class="top"><span><b>Perspective Beginner Drills</b></span><span>@perspective.sketch</span></div>
+  <h2 class="sec">Your Progress</h2>
+  <div class="sub">Tick off each drill and write the date you finished it</div>
+  <div>
+    <div class="check"><i></i><b>1 · 9 Boxes</b><span>1-point</span><div class="dateline"></div></div>
+    <div class="check"><i></i><b>2 · The Hallway</b><span>1-point</span><div class="dateline"></div></div>
+    <div class="check"><i></i><b>3 · 10 Boxes</b><span>2-point</span><div class="dateline"></div></div>
+    <div class="check"><i></i><b>4 · The Tower</b><span>3-point</span><div class="dateline"></div></div>
+    <div class="check"><i></i><b>5 · Misty Mountains</b><span>Aerial</span><div class="dateline"></div></div>
+    <div class="check"><i></i><b>6 · Eye Level</b><span>Golden rule</span><div class="dateline"></div></div>
+  </div>
+
+  <div class="callouts" style="margin-top:9mm">
+    <div class="box tip"><b>Show us your drawings!</b><p>Snap a photo of your drill pages and tag @perspective.sketch in your story or post.</p></div>
+    <div class="box tip"><b>Want all 7 types explained?</b><p>Get the free 7 Types of Perspective cheat sheet and more free files:<br><b style="display:inline;font-size:9pt">ardacubuk22-blip.github.io/PRESPECT-VE_7STEP</b></p></div>
+  </div>
+
+  <h2 class="sec" style="margin-top:10mm;font-size:19pt">What to try next</h2>
+  <ul class="plain" style="margin-top:3mm">
+    <li>Redo the drill you liked least, with a new subject.</li>
+    <li>Draw your own desk or room using 1-point, then 2-point perspective.</li>
+    <li>Do the 7-Day Perspective Challenge from the cheat sheet.</li>
+  </ul>
+  <div class="foot"><span>Perspective Beginner Drills</span><span>Page 9 of 9</span></div>
+</section>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const BLUE = '#1e6fd9', ORANGE = '#e0813a';
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const svg = (id, w, h) => { const s = el('svg', { viewBox: `0 0 ${w} ${h}` }); document.getElementById(id).appendChild(s); return s; };
+const txt = (p, x, y, t, o = {}) => { const e = el('text', Object.assign({ x, y, 'font-family': 'Inter', 'font-size': 14, 'font-weight': 600, fill: BLUE }, o), p); e.textContent = t; return e; };
+const vp = (p, x, y, label, color = BLUE, dx = 10, dy = -12) => { el('circle', { cx: x, cy: y, r: 6, fill: color }, p); if (label) txt(p, x + dx, y + dy, label, { fill: color }); };
+const line = (p, x1, y1, x2, y2, o = {}) => el('line', Object.assign({ x1, y1, x2, y2, stroke: '#c3d0ea', 'stroke-width': 1 }, o), p);
+const clip = (p, id, x, y, w, h) => { const c = el('clipPath', { id }, p); el('rect', { x, y, width: w, height: h }, c); return `url(#${id})`; };
+const fan = (p, cx, cy, angles, color, clipRef) => { const g = el('g', { 'clip-path': clipRef }, p); angles.forEach(a => { const r = a * Math.PI / 180; line(g, cx, cy, cx + 2000 * Math.cos(r), cy + 2000 * Math.sin(r), { stroke: color }); }); };
+const range = (a, b, s) => { const r = []; for (let v = a; v <= b + 1e-9; v += s) r.push(v); return r; };
+
+/* one-point box with side faces. (vx,vy)=VP, front face x,y,w,h, k=depth */
+function box(p, vx, vy, x, y, w, h, k) {
+  const S = (px, py) => [vx + (px - vx) * k, vy + (py - vy) * k];
+  const A = [x, y], B = [x + w, y], C = [x + w, y + h], D = [x, y + h];
+  const A2 = S(...A), B2 = S(...B), C2 = S(...C), D2 = S(...D);
+  const poly = (pts, fill) => el('polygon', { points: pts.map(q => q.join(',')).join(' '), fill, stroke: '#1a1a1a', 'stroke-width': 1.6, 'stroke-linejoin': 'round' }, p);
+  if (x + w < vx) poly([B, C, C2, B2], '#cfcac0');
+  if (x > vx) poly([A, D, D2, A2], '#cfcac0');
+  if (y + h < vy) poly([D, C, C2, D2], '#b6b1a6');
+  if (y > vy) poly([A, B, B2, A2], '#e3dfd5');
+  poly([A, B, C, D], '#ffffff');
+}
+
+/* ---- cover art ---- */
+(function () {
+  const s = svg('coverArt', 640, 300), vx = 320, vy = 150;
+  el('rect', { x: 0, y: 0, width: 640, height: 300, fill: '#f4f8fe' }, s);
+  const cp = clip(s, 'cc', 0, 0, 640, 300);
+  fan(s, vx, vy, range(0, 359, 11), '#b9cbec', cp);
+  line(s, 0, vy, 640, vy, { stroke: BLUE, 'stroke-width': 3 });
+  box(s, vx, vy, 40, 24, 110, 62, 0.62);
+  box(s, vx, vy, 470, 16, 120, 68, 0.62);
+  box(s, vx, vy, 18, 122, 88, 52, 0.6);
+  box(s, vx, vy, 528, 118, 92, 56, 0.6);
+  box(s, vx, vy, 110, 200, 120, 76, 0.62);
+  box(s, vx, vy, 290, 208, 62, 70, 0.62);
+  box(s, vx, vy, 400, 194, 120, 82, 0.62);
+  vp(s, vx, vy, 'vanishing point', BLUE, 12, 24);
+})();
+
+/* ---- sheet 1: 9 boxes ---- */
+(function () {
+  const s = svg('sheet1', 680, 400), vx = 340, vy = 200;
+  const cp = clip(s, 'c1', 0, 0, 680, 400);
+  fan(s, vx, vy, range(0, 359, 12), '#d3dcee', cp);
+  line(s, 0, vy, 680, vy, { stroke: BLUE, 'stroke-width': 2.5 });
+  vp(s, vx, vy, 'VP', BLUE, 12, -12);
+  txt(s, 14, vy - 10, 'horizon line = eye level', { 'font-size': 13, fill: BLUE });
+})();
+
+/* ---- sheet 2: hallway ---- */
+(function () {
+  const s = svg('sheet2', 680, 400), vx = 340, vy = 190;
+  line(s, 0, vy, 680, vy, { stroke: BLUE, 'stroke-width': 2.5 });
+  [[0, 0, 258, 138], [680, 0, 422, 138], [0, 400, 258, 242], [680, 400, 422, 242]].forEach(([a, b, c, d]) => line(s, a, b, c, d, { stroke: '#7f9bd0', 'stroke-width': 1.6 }));
+  el('rect', { x: 258, y: 138, width: 164, height: 104, fill: '#f4f6fa', stroke: '#444', 'stroke-width': 1.8 }, s);
+  vp(s, vx, vy, 'VP', BLUE, 12, -12);
+  txt(s, 14, vy - 10, 'horizon line', { 'font-size': 13 });
+  txt(s, 340, 128, 'back wall', { 'font-size': 12, 'text-anchor': 'middle', fill: '#777', 'font-weight': 500 });
+})();
+
+/* ---- sheet 3: two-point ---- */
+(function () {
+  const s = svg('sheet3', 680, 400), vy = 180, x1 = 30, x2 = 650;
+  const cp = clip(s, 'c3', 0, 0, 680, 400);
+  fan(s, x1, vy, range(-62, 62, 7), '#c9d9f4', cp);
+  fan(s, x2, vy, range(118, 242, 7), '#f1d2b4', cp);
+  line(s, 0, vy, 680, vy, { stroke: BLUE, 'stroke-width': 2.5 });
+  vp(s, x1, vy, 'VP1', BLUE, 10, -12);
+  vp(s, x2, vy, 'VP2', ORANGE, -42, -12);
+  txt(s, 340, vy - 10, 'horizon line', { 'font-size': 13, 'text-anchor': 'middle' });
+})();
+
+/* ---- sheet 4: three-point, three frames ---- */
+(function () {
+  const s = svg('sheet4', 680, 400), W = 210, G = 25, H = 330, hy = 60;
+  const cfg = [{ y3: 285, lab: 'A · VP3 close' }, { y3: 640, lab: 'B · VP3 farther' }, { y3: 1500, lab: 'C · VP3 farthest' }];
+  cfg.forEach((c, i) => {
+    const x0 = i * (W + G), cx = x0 + W / 2;
+    el('rect', { x: x0, y: 0, width: W, height: H, rx: 6, fill: '#fff', stroke: '#cfd6e4', 'stroke-width': 1.2 }, s);
+    const cp = clip(s, 'c4' + i, x0, 0, W, H);
+    const g = el('g', { 'clip-path': cp }, s);
+    range(x0 - 20, x0 + W + 20, 20).forEach(xx => line(g, cx, c.y3, xx, 0, { stroke: '#d3dcee' }));
+    line(g, x0, hy, x0 + W, hy, { stroke: BLUE, 'stroke-width': 2.2 });
+    vp(s, x0 + 16, hy, 'VP1', BLUE, -2, -12);
+    vp(s, x0 + W - 16, hy, 'VP2', ORANGE, -30, -12);
+    if (i === 0) { vp(s, cx, c.y3, 'VP3', '#444', 10, -10); }
+    else { txt(s, cx, H - 24, 'VP3 is off the page', { 'text-anchor': 'middle', 'font-size': 12, fill: '#666', 'font-weight': 500 }); txt(s, cx, H - 8, '↓', { 'text-anchor': 'middle', 'font-size': 18, fill: '#444' }); }
+    txt(s, cx, H + 26, c.lab, { 'text-anchor': 'middle', 'font-size': 14, fill: '#1a1a1a', 'font-weight': 700 });
+  });
+  txt(s, 340, 392, 'Which cube looks the most natural? Circle it.', { 'text-anchor': 'middle', 'font-size': 13, fill: '#666', 'font-weight': 500 });
+})();
+
+/* ---- sheet 5: aerial ---- */
+(function () {
+  const s = svg('sheet5', 680, 400), bw = 150, gap = 20;
+  const labels = ['1 · farthest', '2', '3', '4 · nearest'];
+  labels.forEach((l, i) => {
+    const x = 10 + i * (bw + gap);
+    el('rect', { x, y: 14, width: bw, height: 58, rx: 6, fill: '#fff', stroke: '#8a94a8', 'stroke-width': 1.5 }, s);
+    txt(s, x + bw / 2, 92, l, { 'text-anchor': 'middle', 'font-size': 13, fill: '#555', 'font-weight': 600 });
+  });
+  txt(s, 14, 118, 'Shade each box with the same pencil: light → dark', { 'font-size': 12, fill: '#777', 'font-weight': 500 });
+  el('rect', { x: 10, y: 130, width: 660, height: 262, rx: 6, fill: '#fff', stroke: '#cfd6e4', 'stroke-width': 1.2 }, s);
+  const ridge = (y, a, ph) => { let d = `M10 ${y}`; for (let x = 10; x <= 670; x += 55) d += ` Q ${x + 27} ${y - a * Math.sin(ph + x / 90)} ${x + 55} ${y + 6 * Math.sin(ph + x / 60)}`; return d; };
+  [[210, 30, 0.4], [262, 26, 1.7], [316, 22, 2.6], [372, 16, 0.9]].forEach(([y, a, ph], i) => {
+    el('path', { d: ridge(y, a, ph), fill: 'none', stroke: '#b3bdd1', 'stroke-width': 1.6, 'stroke-dasharray': '6 5' }, s);
+    el('circle', { cx: 32, cy: y - 14, r: 11, fill: '#fff', stroke: BLUE, 'stroke-width': 1.6 }, s);
+    txt(s, 32, y - 9.5, String(i + 1), { 'text-anchor': 'middle', 'font-size': 13 });
+  });
+})();
+
+/* ---- sheet 6: eye level ---- */
+(function () {
+  const s = svg('sheet6', 680, 400), hy = 150;
+  el('rect', { x: 0, y: hy, width: 680, height: 250, fill: '#f7f6f1' }, s);
+  line(s, 0, hy, 680, hy, { stroke: BLUE, 'stroke-width': 2.5 });
+  txt(s, 670, hy - 10, 'horizon line = eye level', { 'text-anchor': 'end', 'font-size': 13 });
+  /* example person: feet at (90,360), eyes on horizon */
+  const fx = 90, fy = 360, g = el('g', { stroke: '#444', 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round' }, s);
+  el('circle', { cx: fx, cy: hy + 2, r: 15 }, g);
+  line(g, fx, hy + 17, fx, hy + 118, { stroke: '#444', 'stroke-width': 2 });
+  line(g, fx - 36, hy + 50, fx, hy + 32, { stroke: '#444', 'stroke-width': 2 });
+  line(g, fx + 36, hy + 50, fx, hy + 32, { stroke: '#444', 'stroke-width': 2 });
+  line(g, fx, hy + 118, fx - 20, fy, { stroke: '#444', 'stroke-width': 2 });
+  line(g, fx, hy + 118, fx + 20, fy, { stroke: '#444', 'stroke-width': 2 });
+  el('circle', { cx: fx - 5, cy: hy + 1, r: 1.8, fill: '#444', stroke: 'none' }, g);
+  el('circle', { cx: fx + 5, cy: hy + 1, r: 1.8, fill: '#444', stroke: 'none' }, g);
+  txt(s, fx, 386, 'example', { 'text-anchor': 'middle', 'font-size': 12, fill: '#666', 'font-weight': 500 });
+  [[230, 320], [360, 275], [480, 240], [585, 215]].forEach(([x, y]) => {
+    el('circle', { cx: x, cy: y, r: 6, fill: '#fff', stroke: BLUE, 'stroke-width': 2.4 }, s);
+    txt(s, x, y + 22, 'feet', { 'text-anchor': 'middle', 'font-size': 11, fill: BLUE, 'font-weight': 500 });
+  });
+})();
+</script>
+</body>
+</html>

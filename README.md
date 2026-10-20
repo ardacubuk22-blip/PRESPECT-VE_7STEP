@@ -10,7 +10,11 @@ index.html            the landing page
 assets/style.css      styles
 assets/img/           cover and page previews (rendered from the PDF)
 downloads/            the PDF files people can download
+src/                  source files used to make some of the PDFs
 ```
+
+`src/beginner-drills.html` is the source of `downloads/perspective-beginner-drills.pdf`.
+To rebuild the PDF, open the HTML file in Chrome and print it to PDF (A4, margins "None", background graphics on).
 
 ## Preview locally
 

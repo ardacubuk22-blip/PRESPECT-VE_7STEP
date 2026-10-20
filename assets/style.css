@@ -100,6 +100,7 @@ h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; margin: 16px 0 14px; 
 .file-body p { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
 .file-body .file-meta { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
 .file-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag-new { display: inline-block; vertical-align: middle; margin-left: 6px; background: var(--blue); color: #fff; font: 700 11px Inter, sans-serif; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; }
 .file-card.more { border: 1.5px dashed var(--blue); background: transparent; }
 
 /* footer */
@@ -115,6 +116,7 @@ h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; margin: 16px 0 14px; 
   .actions .btn { width: auto; }
   .files { grid-template-columns: repeat(2, 1fr); }
   .file-card > img { width: 110px; }
+  .file-card.more { grid-column: 1 / -1; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .previews { grid-template-columns: repeat(3, 1fr); }
   .section { padding: 72px 0; }
