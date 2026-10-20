@@ -58,7 +58,9 @@ h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; margin: 16px 0 14px; 
 }
 .btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
 .btn:focus-visible, .pill:focus-visible, .cover:focus-visible, a:focus-visible { outline: 3px solid #0b3d85; outline-offset: 3px; }
-.hero-text .btn { width: 100%; }
+.actions { display: grid; gap: 12px; }
+.actions .btn { width: 100%; }
+.btn.sm { font-size: 16px; padding: 11px 20px; border-radius: 12px; box-shadow: none; }
 .btn.ghost { background: transparent; color: var(--blue); border: 2px solid var(--blue); box-shadow: none; }
 .btn.ghost:hover { background: var(--blue); color: #fff; }
 
@@ -85,12 +87,20 @@ h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; margin: 16px 0 14px; 
 .previews img { border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 22px rgba(0, 0, 0, .08); background: #fff; }
 .previews figcaption { margin-top: 10px; font-weight: 600; font-size: 14px; color: var(--muted); text-align: center; }
 
-.soon {
-  background: var(--surface); border: 1.5px dashed var(--blue); border-radius: var(--radius);
-  padding: 30px 22px; text-align: center;
+.section-lead { color: var(--muted); margin: -10px 0 22px; }
+
+.files { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.file-card {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px;
 }
-.soon h2 { margin-bottom: 10px; }
-.soon p { color: var(--muted); margin: 0 auto 22px; max-width: 30em; }
+.file-card > img { width: 92px; flex: none; border: 1px solid var(--line); border-radius: 8px; }
+.file-body { min-width: 0; }
+.file-body h3 { font: 700 20px/1.2 Outfit, Inter, sans-serif; margin: 0 0 4px; }
+.file-body p { margin: 0 0 12px; color: var(--muted); font-size: 15px; }
+.file-body .file-meta { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.file-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.file-card.more { border: 1.5px dashed var(--blue); background: transparent; }
 
 /* footer */
 .site-footer { border-top: 1px solid var(--line); padding: 22px 0 30px; font-size: 14px; color: var(--muted); }
@@ -101,7 +111,10 @@ h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 800; margin: 16px 0 14px; 
 @media (min-width: 760px) {
   .hero { padding: 64px 0 72px; }
   .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 56px; }
-  .hero-text .btn { width: auto; }
+  .actions { grid-auto-flow: column; justify-content: start; }
+  .actions .btn { width: auto; }
+  .files { grid-template-columns: repeat(2, 1fr); }
+  .file-card > img { width: 110px; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .previews { grid-template-columns: repeat(3, 1fr); }
   .section { padding: 72px 0; }
