@@ -1,0 +1,11 @@
+# secrets and local config – never commit these
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+
+# local junk
+.DS_Store
+Thumbs.db
+node_modules/
